@@ -1,6 +1,6 @@
 # /sam — Ultimate Claude Code Skill
 
-> Full-project audit + systematic debugging + TDD fixes + parallel agents + verification gates + knowledge graph. The complete package.
+> Full-project audit + systematic debugging + TDD fixes + parallel agents + verification gates + knowledge graph + webapp testing + research scout + memory consolidation + code review integration. The complete package.
 
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://claude.ai/code)
 
@@ -10,19 +10,24 @@
 
 Type `/sam` in Claude Code and it will:
 
+- 🔀 **Git worktree setup** — Isolated workspace for safe fix testing
 - 🔍 **Parallel file scanning** — Multiple agents scan different parts simultaneously
 - 🐛 **Systematic bug detection** — Root cause investigation, not symptom fixes
+- 🔎 **Research scout** — Hunts web/Reddit/HN for unknown bug solutions
 - 🧪 **TDD fix application** — Every fix has a failing test first
+- 👥 **Subagent-driven fixes** — Multi-agent workflow for complex bugs
 - 🔒 **Security audit** — 40+ checks for vulnerabilities
 - ⚡ **Performance audit** — Asset sizes, memory leaks, bundle bloat
 - ♿ **Accessibility scan** — WCAG 2.1 AA compliance
 - 🔇 **Console noise removal** — Auto-removes console.log/debugger
 - 💀 **Dead code elimination** — Unused imports, unreachable code
-- 🗺️ **Knowledge graph** — Maps god nodes, clusters, dead ends
-- ✅ **Verification gates** — No completion claims without evidence
+- 🗺️ **Graphify integration** — Deep knowledge graph with communities
+- 🧠 **Memory consolidation** — Persists audit state across sessions
+- 👁️ **Code review integration** — Request and receive reviews
+- 🌐 **Webapp testing** — Playwright verification for web apps
 - 📋 **SAM_AUDIT_REPORT.md** — Full audit report
 - 🎯 **Human score** — 0-100 rating with specific deductions
-- 🧠 **CLAUDE.md export** — Project memory for future context
+- 🧩 **Finishing workflow** — Merge, PR, or cleanup options
 - 🪨 **Caveman mode** — Ultra-compressed responses save tokens
 
 ---
@@ -77,6 +82,7 @@ CONSOLE REMOVED: 47 lines across 12 files
 GRAPH: api.js → auth, utils, components
 Clusters: auth/, dashboard/, settings/
 Dead ends: helpers.js, legacy.js
+Surprising: utils.js connects auth and DB layers
 
 HEALTH: 8/10 — good structure, needs error handling
 HUMAN SCORE: 78/100 (-10 security, -5 unused imports, -7 missing tests)
@@ -89,26 +95,31 @@ NEXT:
 5. Add loading states to fetch calls
 
 Full report → SAM_AUDIT_REPORT.md
+Worktree → .worktrees/sam-audit
 ```
 
 ---
 
-## The 11 Phases
+## The 15 Steps
 
-| Phase | What happens |
-|-------|--------------|
+| Step | What happens |
+|------|--------------|
 | 0 | Caveman mode activation |
-| 1 | Parallel file scanning |
-| 2 | Systematic bug detection (4-phase root cause analysis) |
-| 3 | TDD fix application (red-green-refactor) |
-| 4 | Bug detection (syntax, logic, async, console, dead code) |
-| 5 | Security audit (40+ checks) |
-| 6 | Structure review |
-| 7 | Performance audit |
-| 8 | Accessibility scan |
-| 9 | Verification gates (20-point checklist) |
-| 10 | Knowledge graph generation |
-| 11 | Report generation + human score + CLAUDE.md export |
+| 1 | Git worktree setup (isolation) |
+| 2 | Parallel file scanning |
+| 3 | Systematic debugging (4-phase root cause) |
+| 4 | Research scout (web/Reddit/HN) |
+| 5 | TDD fix application (red-green-refactor) |
+| 6 | Subagent-driven fixes |
+| 7 | Comprehensive audit (bug/security/perf/a11y) |
+| 8 | Webapp testing (Playwright) |
+| 9 | Code review integration |
+| 10 | Verification gates (20-point checklist) |
+| 11 | Graphify integration (deep knowledge graph) |
+| 12 | Memory consolidation |
+| 13 | Report generation + human score |
+| 14 | Production gate |
+| 15 | Finishing workflow (merge/PR/cleanup) |
 
 ---
 
@@ -122,16 +133,26 @@ Full report → SAM_AUDIT_REPORT.md
 
 ---
 
-## Skills merged
+## Skills merged (16 total)
 
 This skill combines:
 
+- **caveman-claude-skill** — Ultra-compressed token-efficient responses
 - **systematic-debugging** — 4-phase root cause methodology
 - **test-driven-development** — Red-green-refactor for every fix
 - **verification-before-completion** — Evidence before assertions
 - **dispatching-parallel-agents** — Parallel scanning for large projects
 - **subagent-driven-development** — Multi-agent workflow for complex fixes
 - **codepatch** — Security audit, performance check, human score
+- **using-git-worktrees** — Isolated workspace for safe fix testing
+- **consolidate-memory** — Session memory persists across audits
+- **finishing-a-development-branch** — Cleanup, PR creation after audit
+- **requesting-code-review** — Get review before claiming done
+- **receiving-code-review** — Handle review feedback
+- **executing-plans** — Multi-session execution for huge projects
+- **graphify** — Deep knowledge graph with communities
+- **research-scout** — Research unknown bug solutions
+- **webapp-testing** — Live browser testing after fixes
 
 ---
 

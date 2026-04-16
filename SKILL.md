@@ -5,14 +5,16 @@ description: >
   finds bugs using systematic debugging methodology, applies fixes with TDD,
   verifies with quality gates, builds knowledge graph, generates audit report.
   Includes: bug detection, security audit, performance check, accessibility scan,
-  console cleanup, dead code removal, auto-fixing with verification.
+  console cleanup, dead code removal, auto-fixing with verification, git worktrees
+  for isolation, memory consolidation, code review integration, webapp testing,
+  research scout for unknown bugs, and deep graphify integration.
   TRIGGER: user types /sam at start of message. Also trigger on "audit my project",
   "full code review", "scan all files", "project health check", "use /sam".
 ---
 
 # /sam — Ultimate Project Audit Skill
 
-Full-project scanner with parallel agents, systematic debugging, TDD fixes, verification gates. One command does everything.
+Full-project scanner with parallel agents, systematic debugging, TDD fixes, verification gates, knowledge graph, webapp testing, research scout. One command does everything.
 
 ---
 
@@ -28,7 +30,37 @@ All responses use caveman ultra after /sam runs:
 
 ---
 
-## Step 1 — Parallel File Scanning
+## Step 1 — Git Worktree Setup (Isolation)
+
+**REQUIRED before any fixes.** Create isolated workspace.
+
+```bash
+# Check worktree directory
+ls -d .worktrees 2>/dev/null || ls -d worktrees 2>/dev/null
+
+# Verify ignored (CRITICAL)
+git check-ignore -q .worktrees 2>/dev/null || echo "NEED ADD TO .gitignore"
+
+# Create worktree
+git worktree add .worktrees/sam-audit -b sam/audit-$(date +%Y%m%d)
+cd .worktrees/sam-audit
+
+# Run setup
+npm install 2>/dev/null || pip install -r requirements.txt 2>/dev/null || true
+
+# Verify baseline
+git status
+```
+
+**Why worktree:**
+- Isolated from main branch
+- Safe to apply fixes
+- Can discard if issues
+- No pollution of original
+
+---
+
+## Step 2 — Parallel File Scanning
 
 Dispatch parallel agents per independent domain:
 
@@ -56,7 +88,7 @@ Each agent:
 
 ---
 
-## Step 2 — Systematic Bug Detection
+## Step 3 — Systematic Bug Detection
 
 ### Phase 1: Root Cause Investigation
 
@@ -107,7 +139,37 @@ For each bug found:
 
 ---
 
-## Step 3 — TDD Fix Application
+## Step 4 — Research Scout (Unknown Bugs)
+
+For bugs not understood:
+
+1. **Search web** for error patterns
+2. **Search Reddit** — r/webdev, r/programming, r/javascript
+3. **Search Hacker News** — hn.algolia.com
+4. **Search Quora** — practical experiences
+
+**Query patterns:**
+- "{error message} 2026"
+- "{technology} bug fix"
+- "{framework} issue solution"
+
+**Cross-reference:**
+- Compare findings against existing code
+- Discard if redundant
+- Flag if contradictory
+- Validate if genuinely new
+
+**Store in report:**
+```
+RESEARCH: [bug]
+- Source: [URL]
+- Finding: [what worked]
+- Applied: [yes/no]
+```
+
+---
+
+## Step 5 — TDD Fix Application
 
 **Iron Law: NO PRODUCTION CODE WITHOUT FAILING TEST FIRST**
 
@@ -144,68 +206,7 @@ npm test
 
 ---
 
-## Step 4 — Comprehensive Audit Checks
-
-### 4.1 Bug Detection
-
-| Check | What to look for |
-|-------|-----------------|
-| Syntax errors | broken brackets, unclosed tags, missing semicolons |
-| Logic bugs | wrong conditions, off-by-one, `<` vs `<=` |
-| Undefined vars | variables used before declaration |
-| Null/undefined | missing null checks, optional chaining needed |
-| Async issues | missing await, unhandled promises, race conditions |
-| Console noise | `console.log`, `console.warn`, `console.error`, `debugger` |
-| Dead code | unused imports, unreachable code, unused functions |
-| Missing files | imports pointing to non-existent files |
-
-### 4.2 Security Audit (40+ checks)
-
-**Critical (full sentences, never caveman):**
-- No API keys hardcoded
-- No `innerHTML` without sanitization
-- No `eval()` usage
-- Parameterized queries only
-- CORS properly configured
-- Auth tokens in httpOnly cookies
-- HTTPS enforcement
-- Input validation on all boundaries
-- CSP headers present
-- No secrets in logs/errors
-
-### 4.3 Structure Review
-
-- File organization
-- Import/export patterns
-- Coupling between modules
-- Circular dependencies
-
-### 4.4 Performance Audit
-
-- Asset sizes
-- Memory leaks
-- Bundle bloat
-- Lazy loading opportunities
-- Image optimization
-
-### 4.5 Accessibility (WCAG 2.1 AA)
-
-- ARIA labels
-- Contrast ratios
-- Keyboard navigation
-- Alt text on images
-- Form labels
-
-### 4.6 Mobile/Responsive
-
-- Viewport meta tag
-- Breakpoint coverage
-- Touch target sizes
-- Responsive images
-
----
-
-## Step 5 — Subagent-Driven Fix Implementation
+## Step 6 — Subagent-Driven Fix Implementation
 
 For complex fixes or multiple files:
 
@@ -240,7 +241,138 @@ For complex fixes or multiple files:
 
 ---
 
-## Step 6 — Verification Before Completion
+## Step 7 — Comprehensive Audit Checks
+
+### 7.1 Bug Detection
+
+| Check | What to look for |
+|-------|-----------------|
+| Syntax errors | broken brackets, unclosed tags, missing semicolons |
+| Logic bugs | wrong conditions, off-by-one, `<` vs `<=` |
+| Undefined vars | variables used before declaration |
+| Null/undefined | missing null checks, optional chaining needed |
+| Async issues | missing await, unhandled promises, race conditions |
+| Console noise | `console.log`, `console.warn`, `console.error`, `debugger` |
+| Dead code | unused imports, unreachable code, unused functions |
+| Missing files | imports pointing to non-existent files |
+
+### 7.2 Security Audit (40+ checks)
+
+**Critical (full sentences, never caveman):**
+- No API keys hardcoded
+- No `innerHTML` without sanitization
+- No `eval()` usage
+- Parameterized queries only
+- CORS properly configured
+- Auth tokens in httpOnly cookies
+- HTTPS enforcement
+- Input validation on all boundaries
+- CSP headers present
+- No secrets in logs/errors
+
+### 7.3 Structure Review
+
+- File organization
+- Import/export patterns
+- Coupling between modules
+- Circular dependencies
+
+### 7.4 Performance Audit
+
+- Asset sizes
+- Memory leaks
+- Bundle bloat
+- Lazy loading opportunities
+- Image optimization
+
+### 7.5 Accessibility (WCAG 2.1 AA)
+
+- ARIA labels
+- Contrast ratios
+- Keyboard navigation
+- Alt text on images
+- Form labels
+
+### 7.6 Mobile/Responsive
+
+- Viewport meta tag
+- Breakpoint coverage
+- Touch target sizes
+- Responsive images
+
+---
+
+## Step 8 — Webapp Testing (If Applicable)
+
+For web applications, verify fixes with Playwright:
+
+```python
+from playwright.sync_api import sync_playwright
+
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True)
+    page = browser.new_page()
+    page.goto('http://localhost:5173')
+    page.wait_for_load_state('networkidle')
+    
+    # Test fixed functionality
+    page.locator('button#submit').click()
+    expect(page.locator('.success')).to_be_visible()
+    
+    browser.close()
+```
+
+**Pattern:**
+1. Start server with `with_server.py`
+2. Navigate and wait for `networkidle`
+3. Screenshot for verification
+4. Test user flows
+5. Capture console logs for errors
+
+---
+
+## Step 9 — Code Review Integration
+
+### Requesting Review
+
+After fixes applied:
+
+```bash
+# Get SHAs
+BASE_SHA=$(git rev-parse HEAD~1)
+HEAD_SHA=$(git rev-parse HEAD)
+```
+
+Dispatch `superpowers:code-reviewer` subagent with:
+- What was implemented
+- Plan/requirements reference
+- BASE_SHA and HEAD_SHA
+- Description of changes
+
+**Act on feedback:**
+- Fix Critical issues immediately
+- Fix Important issues before proceeding
+- Note Minor issues for later
+
+### Receiving Review
+
+**Response pattern:**
+1. READ complete feedback
+2. UNDERSTAND — restate in own words or ask
+3. VERIFY against codebase
+4. EVALUATE — technically sound?
+5. RESPOND — technical acknowledgment or pushback
+6. IMPLEMENT — one item at a time, test each
+
+**Never:**
+- "You're absolutely right!" (performative)
+- "Great point!" (gratitude)
+- Implement unclear items
+- Blind implementation without verification
+
+---
+
+## Step 10 — Verification Before Completion
 
 **Iron Law: NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE**
 
@@ -265,36 +397,58 @@ For complex fixes or multiple files:
 | Build succeeds | Build: exit 0 |
 | Bug fixed | Original symptom test: passes |
 | Security clean | Security scan: 0 critical issues |
-
-**Red flags → STOP:**
-- Using "should", "probably", "seems to"
-- Expressing satisfaction before verification
-- Trusting agent success reports
-- "Just this once" thinking
+| Webapp works | Playwright test: passes |
 
 ---
 
-## Step 7 — Build Project Knowledge Graph
+## Step 11 — Graphify Integration (Deep Knowledge Graph)
 
-Map project structure:
+Build comprehensive knowledge graph:
 
-1. **God nodes** — files/modules everything depends on
-2. **Clusters** — group related files by feature/domain
-3. **Dependency edges** — who imports who
-4. **Dead ends** — files with no imports and no dependents
-5. **Design rationale** — read comments tagged `// NOTE:` `// WHY:` `// HACK:` `// TODO:`
-
-Output:
+```bash
+/graphify . --mode deep --directed
 ```
-GRAPH: api.js → auth, utils, components
-Clusters: auth/, dashboard/, settings/
-Dead ends: helpers.js, legacy.js
-God nodes: config.js (imported by 12 files)
+
+**What graphify adds:**
+- God nodes — most connected files
+- Communities — clustered related code
+- Surprising connections — unexpected links
+- EXTRACTED vs INFERRED edges — honest audit trail
+- GRAPH_REPORT.md — full analysis
+
+**Integrate into /sam report:**
+```
+GRAPH: [from graphify]
+- God nodes: [files everything depends on]
+- Communities: [feature clusters]
+- Surprising connections: [unexpected links]
+- Cohesion scores: [how tight each cluster]
 ```
 
 ---
 
-## Step 8 — Generate Audit Report
+## Step 12 — Memory Consolidation
+
+After audit, consolidate to memory:
+
+```
+~/.claude/memory/
+├── recent-memory.md      # 48hr rolling
+├── long-term-memory.md   # Persistent facts
+└── project-memory.md     # Project states
+```
+
+**What to remember:**
+- Project type and stack
+- God nodes from graph
+- Recurring bug patterns
+- Security issues found
+- Performance bottlenecks
+- What was fixed this session
+
+---
+
+## Step 13 — Generate Audit Report
 
 Create `SAM_AUDIT_REPORT.md` in project root.
 
@@ -303,6 +457,7 @@ Create `SAM_AUDIT_REPORT.md` in project root.
 ```markdown
 # /sam Audit Report
 Generated: [date]
+Worktree: [path]
 
 ## Executive Summary
 - Files scanned: [N]
@@ -311,6 +466,7 @@ Generated: [date]
 - Console lines removed: [N]
 - Dead code removed: [N] items
 - Health score: [X]/10
+- Human score: [X]/100
 
 ## Project Structure Map
 [folder tree + god nodes + clusters + dead ends]
@@ -332,6 +488,14 @@ Generated: [date]
 ## Accessibility Audit
 [WCAG compliance issues]
 
+## Graphify Analysis
+- God nodes: [list]
+- Communities: [list with cohesion scores]
+- Surprising connections: [list]
+
+## Research Findings
+[Unknown bugs researched, solutions found]
+
 ## Console Noise Removed
 - [file]: line [N] - [type]
 
@@ -340,6 +504,10 @@ Generated: [date]
 
 ## Project Health Score
 [X]/10 — [reason]
+
+## Human Score Breakdown
+[X]/100
+- [deduction]: [reason] [points]
 
 ## What to Do Next
 1. [highest priority]
@@ -352,11 +520,12 @@ Generated: [date]
 - Tests: [command] → [result]
 - Linter: [command] → [result]
 - Build: [command] → [result]
+- Security: [scan] → [result]
 ```
 
 ---
 
-## Step 9 — Production Gate (20-Point Checklist)
+## Step 14 — Production Gate (20-Point Checklist)
 
 Before claiming SHIP IT:
 
@@ -379,35 +548,60 @@ Before claiming SHIP IT:
 17. CHANGELOG updated
 18. Version bumped
 19. Git commit clean
-20. Human review approved
+20. Code review approved
 
 **SHIPT IT** only if all 20 pass.
 **NOT YET** with specific failures if any fail.
 
 ---
 
-## Step 10 — Human Score & CLAUDE.md Export
+## Step 15 — Finishing Development Branch
 
-### Human Score (0-100)
+After audit complete, present options:
 
-Rate code quality with specific deductions:
-- -10 per console.log left in production
-- -10 per security vulnerability
-- -5 per unused import
-- -5 per missing error handling
-- -5 per magic number
-- -10 per missing test for critical path
-- -5 per accessibility violation
-- -10 per performance issue
+```
+/sam audit complete. What next?
 
-### CLAUDE.md Generator
+1. Merge fixes back to main locally
+2. Push and create Pull Request
+3. Keep worktree as-is (handle later)
+4. Discard changes
 
-Export project memory:
-- Project type and stack
-- Architecture patterns
-- Key files and their roles
-- Gotchas and special cases
-- Build/test commands
+Which option?
+```
+
+### Option 1: Merge Locally
+
+```bash
+git checkout main
+git pull
+git merge sam/audit-[date]
+git branch -d sam/audit-[date]
+git worktree remove .worktrees/sam-audit
+```
+
+### Option 2: Create PR
+
+```bash
+git push -u origin sam/audit-[date]
+gh pr create --title "/sam audit fixes" --body "..."
+```
+
+### Option 3: Keep As-Is
+
+Report: "Worktree preserved at [path]. Handle manually."
+
+### Option 4: Discard
+
+**Confirm first:**
+```
+This will permanently delete:
+- Branch sam/audit-[date]
+- All commits: [list]
+- Worktree at [path]
+
+Type 'discard' to confirm.
+```
 
 ---
 
@@ -429,6 +623,7 @@ CONSOLE REMOVED: [N] lines across [M] files
 
 GRAPH: [god node] → [cluster1], [cluster2]...
 Dead ends: [file], [file]
+Surprising: [connection]
 
 HEALTH: [X]/10 — [reason]
 HUMAN SCORE: [X]/100
@@ -439,6 +634,7 @@ NEXT:
 ...
 
 Full report → SAM_AUDIT_REPORT.md
+Worktree → [path]
 ```
 
 ---
@@ -453,24 +649,31 @@ Full report → SAM_AUDIT_REPORT.md
 
 ---
 
-## Memory (Session-Persistent)
-
-After first /sam run, remember:
-- Project type (React/Node/vanilla JS/Python/etc)
-- God nodes
-- Recurring patterns (same bug in multiple files)
-- What was already fixed this session
-- Security issues found
-- Performance bottlenecks
-
-On follow-up questions, use graph knowledge — don't re-scan unless user says `/sam refresh`.
-
----
-
 ## Command
 
 Only one command: `/sam`
 
-Does everything — parallel scan, systematic debugging, TDD fixes, security audit, performance check, accessibility scan, verification gates, knowledge graph, report generation, human score, CLAUDE.md export.
+Does everything — worktree isolation, parallel scan, systematic debugging, research scout, TDD fixes, security audit, performance check, accessibility scan, webapp testing, verification gates, code review, graphify integration, memory consolidation, report generation, human score, finishing workflow.
 
 No flags. No subcommands. Just `/sam`.
+
+---
+
+## Skills Merged (15 Total)
+
+1. **caveman-claude-skill** — Ultra-compressed responses
+2. **systematic-debugging** — 4-phase root cause methodology
+3. **test-driven-development** — Red-green-refactor for every fix
+4. **verification-before-completion** — Evidence before assertions
+5. **dispatching-parallel-agents** — Parallel file scanning
+6. **subagent-driven-development** — Multi-agent workflow
+7. **codepatch** — Security, performance, accessibility audits
+8. **using-git-worktrees** — Isolated workspace for fixes
+9. **consolidate-memory** — Session memory persistence
+10. **finishing-a-development-branch** — Post-audit workflow
+11. **requesting-code-review** — Get review for fixes
+12. **receiving-code-review** — Handle review feedback
+13. **executing-plans** — Multi-session execution
+14. **graphify** — Deep knowledge graph
+15. **research-scout** — Research unknown bugs
+16. **webapp-testing** — Live browser verification
