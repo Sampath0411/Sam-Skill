@@ -59,6 +59,87 @@ That's it. One command. Does everything.
 
 ---
 
+## How It Works
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                         /sam WORKFLOW                                    │
+└─────────────────────────────────────────────────────────────────────────┘
+
+User types /sam
+       │
+       ▼
+┌─────────────────────┐
+│ 0. Caveman Mode     │ ◄── Ultra-compressed responses
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ 1. Git Worktree     │ ◄── Isolated workspace for safe fixes
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ 2. Parallel Scan    │ ◄── Multiple agents scan directories
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐     ┌─────────────────────┐
+│ 3. Bug Detection    │ ◄──►│ 4. Research Scout   │
+│    (Systematic)     │     │    (if unknown)      │
+└──────────┬──────────┘     └─────────────────────┘
+           │
+           ▼
+┌─────────────────────┐     ┌─────────────────────┐
+│ 5. TDD Fixes        │ ◄──►│ 6. Subagent Fixes   │
+│    (Red-Green-Ref)  │     │    (complex bugs)    │
+└──────────┬──────────┘     └─────────────────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ 7. Audit Suite      │ ◄── Bug + Security + Performance + A11y
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ 8. Webapp Testing   │ ◄── Playwright (if applicable)
+│ 9. Code Review      │ ◄── Request/receive reviews
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ 10. Verify Gates    │ ◄── 20-point checklist
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ 11. Graphify        │ ◄── Knowledge graph with communities
+│ 12. Memory          │ ◄── Persist audit state
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ 13. Report          │ ◄── SAM_AUDIT_REPORT.md
+│ 14. Production Gate │ ◄── SHIP IT or NOT YET
+│ 15. Finish          │ ◄── Merge / PR / Keep / Discard
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│   OUTPUT: Summary   │
+│   + Full Report     │
+│   + Worktree Path   │
+└─────────────────────┘
+```
+
+### The Three Iron Laws
+
+1. **NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST**
+2. **NO PRODUCTION CODE WITHOUT FAILING TEST FIRST**
+3. **NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE**
+
+---
+
 ## Example output
 
 ```

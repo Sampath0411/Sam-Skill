@@ -18,6 +18,188 @@ Full-project scanner with parallel agents, systematic debugging, TDD fixes, veri
 
 ---
 
+## How It Works
+
+```
+User types /sam
+        ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STEP 0: Caveman Mode Activation                              │
+│  All responses → ultra-compressed, token-efficient            │
+└─────────────────────────────────────────────────────────────┘
+        ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STEP 1: Git Worktree Setup (Isolation)                     │
+│  Create isolated workspace → safe to apply fixes            │
+└─────────────────────────────────────────────────────────────┘
+        ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STEP 2: Parallel File Scanning                             │
+│  Dispatch agents per directory → src/, tests/, config/      │
+└─────────────────────────────────────────────────────────────┘
+        ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STEPS 3-4: Bug Detection + Research Scout                  │
+│  Find bugs → systematic root cause analysis                 │
+│  Unknown bugs → search web/Reddit/HN/Quora                  │
+└─────────────────────────────────────────────────────────────┘
+        ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STEPS 5-6: Fix Application (TDD + Subagents)               │
+│  Red-green-refactor for every fix                           │
+│  Multi-agent workflow for complex fixes                     │
+└─────────────────────────────────────────────────────────────┘
+        ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STEP 7: Comprehensive Audit                                  │
+│  Bug + Security + Performance + Accessibility checks        │
+└─────────────────────────────────────────────────────────────┘
+        ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STEPS 8-9: Webapp Testing + Code Review                    │
+│  Playwright verification (if webapp)                        │
+│  Request/receive code review for fixes                      │
+└─────────────────────────────────────────────────────────────┘
+        ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STEP 10: Verification Gates (20-point checklist)             │
+│  Tests pass? Linter clean? Build succeeds? Security OK?      │
+└─────────────────────────────────────────────────────────────┘
+        ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STEPS 11-12: Graphify + Memory Consolidation                 │
+│  Build deep knowledge graph with communities                │
+│  Persist audit state to memory                              │
+└─────────────────────────────────────────────────────────────┘
+        ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STEPS 13-14: Report + Production Gate                        │
+│  Generate SAM_AUDIT_REPORT.md                               │
+│  Calculate human score (0-100)                              │
+│  Production gate: SHIP IT or NOT YET                       │
+└─────────────────────────────────────────────────────────────┘
+        ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STEP 15: Finishing Workflow                                  │
+│  Options: Merge locally / Create PR / Keep / Discard         │
+└─────────────────────────────────────────────────────────────┘
+        ↓
+┌─────────────────────────────────────────────────────────────┐
+│  OUTPUT: Caveman summary + Full report + Worktree path       │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Workflow Visualization
+
+### High-Level Flow
+
+```dot
+digraph sam_workflow {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor=lightblue];
+    edge [arrowhead=vee];
+
+    Start [label="/sam", shape=ellipse, fillcolor=green];
+    Caveman [label="Caveman Mode"];
+    Worktree [label="Git Worktree Setup"];
+    ParallelScan [label="Parallel File Scan"];
+    BugDetect [label="Bug Detection"];
+    Research [label="Research Scout"];
+    TDD [label="TDD Fixes"];
+    Subagent [label="Subagent Fixes"];
+    Audit [label="Comprehensive Audit"];
+    Webapp [label="Webapp Testing"];
+    Review [label="Code Review"];
+    Verify [label="Verification Gates"];
+    Graphify [label="Graphify Integration"];
+    Memory [label="Memory Consolidation"];
+    Report [label="Generate Report"];
+    Gate [label="Production Gate"];
+    Finish [label="Finishing Workflow"];
+    Output [label="Output Results", shape=ellipse, fillcolor=green];
+
+    Start -> Caveman;
+    Caveman -> Worktree;
+    Worktree -> ParallelScan;
+    ParallelScan -> BugDetect;
+    BugDetect -> Research;
+    Research -> TDD;
+    TDD -> Subagent;
+    Subagent -> Audit;
+    Audit -> Webapp;
+    Audit -> Review;
+    Webapp -> Verify;
+    Review -> Verify;
+    Verify -> Graphify;
+    Graphify -> Memory;
+    Memory -> Report;
+    Report -> Gate;
+    Gate -> Finish;
+    Finish -> Output;
+}
+```
+
+### Bug Fix Workflow
+
+```dot
+digraph bug_fix {
+    rankdir=LR;
+    node [shape=box, style=filled];
+
+    Find [label="Find Bug", fillcolor=lightyellow];
+    RootCause [label="Root Cause\nAnalysis", fillcolor=lightblue];
+    Research [label="Research Scout\n(if unknown)", fillcolor=lightgreen];
+    Red [label="Write Failing\nTest (RED)", fillcolor=lightcoral];
+    VerifyRed [label="Verify Test\nFails", fillcolor=lightcoral];
+    Green [label="Minimal Code\n(GREEN)", fillcolor=lightgreen];
+    VerifyGreen [label="Verify Test\nPasses", fillcolor=lightgreen];
+    Refactor [label="Refactor", fillcolor=lightblue];
+    Review [label="Code Review", fillcolor=lightyellow];
+
+    Find -> RootCause;
+    RootCause -> Research [style=dashed, label="if unknown"];
+    RootCause -> Red;
+    Research -> Red;
+    Red -> VerifyRed;
+    VerifyRed -> Green;
+    Green -> VerifyGreen;
+    VerifyGreen -> Refactor;
+    Refactor -> Review;
+    Review -> VerifyGreen [label="if issues", style=dashed];
+}
+```
+
+### Parallel Agent Dispatch
+
+```dot
+digraph parallel_agents {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor=lightblue];
+
+    Controller [label="/sam Controller", fillcolor=green];
+    Agent1 [label="Agent 1\nScan src/"];
+    Agent2 [label="Agent 2\nScan tests/"];
+    Agent3 [label="Agent 3\nScan config/"];
+    Agent4 [label="Agent 4\nScan assets/"];
+    Merge [label="Merge Results"];
+    Analyze [label="Analyze & Fix"];
+
+    Controller -> Agent1;
+    Controller -> Agent2;
+    Controller -> Agent3;
+    Controller -> Agent4;
+    Agent1 -> Merge;
+    Agent2 -> Merge;
+    Agent3 -> Merge;
+    Agent4 -> Merge;
+    Merge -> Analyze;
+}
+```
+
+---
+
 ## Step 0 — Activate Caveman Ultra Mode
 
 All responses use caveman ultra after /sam runs:
